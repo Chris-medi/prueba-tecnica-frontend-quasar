@@ -10,8 +10,13 @@ export const useFileStore = defineStore('file', {
   },
   actions: {
     setValue (value) {
-      const ids = this.pin_files.map((elm) => elm?.id)
-      this.files = value.filter((elm) => !ids.includes(elm.id))
+      if (this.pin_files.length > 0) {
+        const ids = this.pin_files.map((elm) => elm?.id)
+        this.files = value.filter((elm) => !ids.includes(elm.id))
+      } else {
+        const filter = value.filter((elm) => !this.files.some((file) => file.id === elm.id))
+        this.files.push(...filter)
+      }
     },
     pinFile (id) {
       const index = this.files.findIndex((elm) => elm.id === id)
@@ -31,6 +36,9 @@ export const useFileStore = defineStore('file', {
     },
     append (elm) {
       this.files.push(elm)
+    },
+    update () {
+      this.files = []
     }
   },
   persist: true

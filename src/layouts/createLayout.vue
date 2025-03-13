@@ -48,11 +48,13 @@ defineOptions({
 import { useQuasar } from 'quasar'
 import { ref, watch } from 'vue'
 
-import { useFileStore } from 'src/stores/filesStore.js'
+import { useRouter, useRoute } from 'vue-router'
 
 import { createFile } from 'src/services/filesServices.js'
 
 const q = useQuasar()
+
+const router = useRouter()
 
 const file = ref(null)
 const page_file = ref(0)
@@ -79,6 +81,7 @@ const onSubmit = async (event) => {
       icon: 'cloud_done',
       message: 'Archivo subido con exito'
     })
+    router.push({ name: '/files' })
   } catch (error) {
     q.notify({
       type: 'warning',

@@ -9,7 +9,7 @@ const updateFile = (data) => {
 }
 
 const deleteFile = (id) => {
-  return fetch(`${api_root}/files`, { headers: { 'Content-Type': 'application/json; charset=UTF-8' }, method: 'DELETE', body: JSON.stringify({ id }) })
+  return fetch(`${api_root}/files`, { headers: { 'Content-Type': 'application/json;' }, method: 'DELETE', body: JSON.stringify({ id }) })
 }
 
 const getFiles = () => {

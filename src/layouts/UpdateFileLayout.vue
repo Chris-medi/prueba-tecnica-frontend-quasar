@@ -92,11 +92,12 @@ const onSubmit = async (event) => {
       err.status = result.status
       throw err
     } else {
+      file_store.update()
       q.notify({
         type: 'positive',
-        message: 'Error en el servidor'
+        message: 'Archivo actualizado'
       })
-      router.push({ path: '/files' })
+      router.push({ name: '/files' })
     }
   } catch (error) {
     console.log(error)
